@@ -252,7 +252,15 @@ namespace KLPlugins.DataExport
             {
                 _outdata.Remove(car.CarIndex);
             }
-            var fname = $@"{_datapath}\{TrackData.TrackId}_{car.CarClass}.txt";
+            string trackName;
+            if (TrackData.TrackId == TrackType.Unknown)
+            {
+                trackName = TrackData.TrackName;
+            }
+            else {
+                trackName = $"{TrackData.TrackId}";
+            }
+            var fname = $@"{_datapath}\{trackName}_{car.CarClass}.txt";
             if (!_bestLaps.ContainsKey(car.CarClass))
             {
                 if (File.Exists(fname))
