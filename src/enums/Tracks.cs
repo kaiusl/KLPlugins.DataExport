@@ -1,6 +1,7 @@
 ﻿namespace KLPlugins.DataExport.Track
 {
-    enum TrackType
+
+    internal enum TrackType
     {
         BrandsHatch = 1,
         Spa = 2,
@@ -25,26 +26,22 @@
         Indianapolis = 22,
         WatkinsGlen = 23,
         Valencia = 24,
+        RedBullRing = 25,
 
         Unknown = 255
     }
 
-    static class TrackExtensions
+    internal static class TrackExtensions
     {
 
         public static double SplinePosOffset(this TrackType track)
         {
-            switch (track)
+            return track switch
             {
-                case TrackType.Silverstone:
-                    return 0.0209485;
-                case TrackType.Spa:
-                    return 0.0038425;
-                default:
-                    return 0;
-            }
+                TrackType.Silverstone => 0.0209485,
+                TrackType.Spa => 0.0036425,
+                _ => 0,
+            };
         }
-
     }
-
 }
